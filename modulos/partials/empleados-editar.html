@@ -1,0 +1,20 @@
+<div class="modal">
+  <div class="modal-card modal-emp modal-emp-editar">
+    <h3>Editar empleado</h3>
+    <input type="hidden" id="empE_id">
+    <div class="form-grid">
+      <label>Nombre <input id="empE_nombre" type="text"></label>
+      <label>Usuario <input id="empE_username" type="text"></label>
+      <label>Nueva contraseña (opcional) <input id="empE_password" type="password"></label>
+      <label>Cargo <select id="empE_cargo"></select></label>
+      <label>Estado
+        <select id="empE_estado"><option value="1">Activo</option><option value="0">Inactivo</option></select>
+      </label>
+    </div>
+    <div class="modal-actions">
+      <button id="empE_guardar" class="btn primary">Guardar</button>
+      <button id="empE_cancel" class="btn">Cancelar</button>
+    </div>
+    <p class="msg" id="empE_msg"></p>
+  </div>
+</div>

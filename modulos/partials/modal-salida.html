@@ -1,0 +1,39 @@
+<!-- modulos/partials/modal-salida.html -->
+<div class="modal">
+  <div class="modal-card modal-out">
+    <h3>Registrar salida</h3>
+
+    <div class="form-grid">
+      <label>Cliente <span style="color:#ff6b6b">*</span>
+        <select id="sal_cliente" required>
+          <option value="">— Selecciona cliente —</option>
+        </select>
+      </label>
+
+      <label>Observaciones
+        <input id="sal_obs" type="text" placeholder="Pedido interno / Despacho">
+      </label>
+
+      <label>Motivo (para auditoría)
+        <input id="sal_motivo" type="text" placeholder="Salida por pedido / Ajuste / etc.">
+      </label>
+    </div>
+
+    <div class="items">
+      <div class="items-head">
+        <div>Producto ID</div>
+        <div>Cantidad</div>
+        <div>Observaciones</div>
+        <div></div>
+      </div>
+      <div id="sal_items" class="items-body"></div>
+      <button id="sal_add" class="btn ghost">+ Agregar ítem</button>
+    </div>
+
+    <div class="modal-actions">
+      <button id="sal_guardar" class="btn primary">Guardar</button>
+      <button id="sal_cancel" class="btn">Cancelar</button>
+    </div>
+    <p class="msg" id="sal_msg"></p>
+  </div>
+</div>

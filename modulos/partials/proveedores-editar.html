@@ -1,0 +1,22 @@
+<div class="modal">
+  <div class="modal-card modal-prov modal-prov-editar">
+    <h3>Editar proveedor</h3>
+    <input type="hidden" id="provE_id">
+    <div class="form-grid">
+      <label>Nombre <input id="provE_nombre" type="text"></label>
+      <label>Teléfono <input id="provE_telefono" type="text"></label>
+      <label>Email <input id="provE_email" type="email"></label>
+      <label>Dirección <input id="provE_direccion" type="text"></label>
+      <label>Estado
+        <select id="provE_estado">
+          <option value="1">Activo</option><option value="0">Inactivo</option>
+        </select>
+      </label>
+    </div>
+    <div class="modal-actions">
+      <button id="provE_guardar" class="btn primary">Guardar</button>
+      <button id="provE_cancel" class="btn">Cancelar</button>
+    </div>
+    <p class="msg" id="provE_msg"></p>
+  </div>
+</div>

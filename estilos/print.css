@@ -1,0 +1,40 @@
+/* === Hoja de estilos solo para el comprobante impreso === */
+@page { size: A4; margin: 12mm; }
+
+html, body {
+  background: #fff;
+  color: #111;
+  font: 12px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+h1, h2, h3 { margin: 0 0 8px; }
+
+/* Encabezado */
+.print-header {
+  display: flex; justify-content: space-between; gap: 20px;
+  padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid #ddd;
+}
+.print-header .brand h2 { margin: 0; }
+.docbox { text-align: right; }
+.doctype { font-weight: 700; }
+
+/* Info cliente/obs */
+.print-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 8px 0 12px; }
+
+/* Tabla detalle */
+.print-table { width: 100%; border-collapse: collapse; }
+.print-table th, .print-table td { border: 1px solid #ddd; padding: 6px; }
+.print-table th { background: #f4f4f4; }
+
+.num { text-align: right; }
+.right { text-align: right; }
+
+.print-footer {
+  margin-top: 10mm;
+  font-size: 11px;
+  color: #444;
+  text-align: center;
+}
+
+/* Para asegurar colores en impresión (si usas fondos) */
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }

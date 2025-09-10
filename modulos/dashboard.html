@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ARQ | Almacén</title>
+  <link rel="stylesheet" href="../estilos/base.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">ARQ Almacén</div>
+
+    <nav class="tabs">
+        <button data-tab="inventario" class="active">Inventario</button>
+        <button data-tab="productos">Productos</button>
+        <button data-tab="proveedores">Proveedores</button>
+        <button data-tab="empleados">Empleados</button>
+        <button data-tab="movimientos">Movimientos</button>
+        <button data-tab="comprobantes">Comprobantes</button>
+        <div class="divider"></div>
+        <button data-tab="ingresos">+ Ingreso</button>
+        <button data-tab="salidas">- Salida</button>
+    </nav>
+
+    <div class="spacer"></div>
+    <div class="user">
+      <span id="whoami">...</span>
+      <button id="btnLogout">Salir</button>
+    </div>
+  </header>
+
+  <main class="content">
+    <section id="view" class="card"></section>
+    <div id="overlays"></div> <!-- aquí se montan los modales -->
+  </main>
+
+  <!-- orquestador SPA -->
+  <script type="module" src="../scripts/core/main.js"></script>
+</body>
+</html>

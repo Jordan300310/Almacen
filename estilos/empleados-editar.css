@@ -1,0 +1,18 @@
+/* Modal: Empleados → Editar */
+.modal-emp-editar .form-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(220px,1fr));
+  gap:10px;
+}
+.modal-emp-editar input,
+.modal-emp-editar select{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:#0e1727;
+  color:var(--text);
+}
+.modal-emp-editar .msg{ min-height:18px }
+.btn{ padding:8px 12px; border-radius:8px; border:1px solid var(--line); background:#1f2a44; color:var(--text); cursor:pointer;}
+.btn.primary{ background:#7CFC98; color:#0a101c; }

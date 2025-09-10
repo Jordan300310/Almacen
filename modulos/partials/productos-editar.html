@@ -1,0 +1,37 @@
+<div class="modal">
+  <div class="modal-card modal-prd modal-prd-editar">
+    <h3>Editar producto</h3>
+
+    <input type="hidden" id="prdE_id">
+
+    <div class="form-grid">
+      <label>SKU
+        <input id="prdE_sku" type="text">
+      </label>
+      <label>Nombre
+        <input id="prdE_nombre" type="text">
+      </label>
+      <label>Precio
+        <input id="prdE_precio" type="number" step="0.01" min="0">
+      </label>
+      <label>Categoría
+        <select id="prdE_categoria"></select>
+      </label>
+      <label>Proveedor (opcional)
+        <select id="prdE_proveedor"><option value="">— Ninguno —</option></select>
+      </label>
+      <label>Estado
+        <select id="prdE_estado">
+          <option value="1">Activo</option>
+          <option value="0">Inactivo</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="modal-actions">
+      <button id="prdE_guardar" class="btn primary">Guardar</button>
+      <button id="prdE_cancel" class="btn">Cancelar</button>
+    </div>
+    <p class="msg" id="prdE_msg"></p>
+  </div>
+</div>

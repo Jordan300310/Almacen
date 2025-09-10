@@ -1,0 +1,17 @@
+/* Estilos específicos para modal de INGRESO */
+.modal-in .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: 10px;
+}
+.modal-in input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #0e1727;
+  color: var(--text);
+}
+.btn.primary { background: #2ecc71; border: 1px solid var(--line); color: #0a101c; }
+.btn { padding: 8px 12px; border-radius: 8px; border:1px solid var(--line); background:#1f2a44; color: var(--text); cursor:pointer; }
+.btn.ghost { background: transparent; }

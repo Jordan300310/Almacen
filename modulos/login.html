@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | ARQ</title>
+  <link rel="stylesheet" href="../estilos/login.css">
+</head>
+<body>
+  <main class="login-wrap">
+    <!-- Login normal -->
+    <form id="frmLogin" class="card" autocomplete="off">
+      <h1>Ingresar</h1>
+      <div class="field">
+        <label for="username">Usuario</label>
+        <input id="username" name="username" type="text" required />
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" required />
+      </div>
+      <button id="btnLogin" type="submit">Entrar</button>
+      <p id="msg" class="msg"></p>
+    </form>
+
+    <!-- Primer uso: crear primer administrador (se muestra si no hay empleados) -->
+    <section id="firstRunPanel" class="card" style="display:none; margin-top:16px;">
+      <h1>Crear primer administrador</h1>
+      <div class="field">
+        <label for="fu_nombre">Nombre</label>
+        <input id="fu_nombre" type="text" placeholder="Nombre" />
+      </div>
+      <div class="field">
+        <label for="fu_usuario">Usuario</label>
+        <input id="fu_usuario" type="text" placeholder="Usuario (ej. admin)" />
+      </div>
+      <div class="field">
+        <label for="fu_password">Contraseña</label>
+        <input id="fu_password" type="password" placeholder="Contraseña" />
+      </div>
+      <button id="fu_crear" type="button" class="btn primary">Crear y entrar</button>
+      <p id="fu_msg" class="msg"></p>
+    </section>
+  </main>
+
+  <script src="../scripts/core/login.js"></script>
+</body>
+</html>

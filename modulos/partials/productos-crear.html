@@ -1,0 +1,29 @@
+<div class="modal">
+  <div class="modal-card modal-prd modal-prd-crear">
+    <h3>Nuevo producto</h3>
+
+    <div class="form-grid">
+      <label>SKU
+        <input id="prdC_sku" type="text" placeholder="SKU-001">
+      </label>
+      <label>Nombre
+        <input id="prdC_nombre" type="text" placeholder="Nombre del producto">
+      </label>
+      <label>Precio
+        <input id="prdC_precio" type="number" step="0.01" min="0" placeholder="0.00">
+      </label>
+      <label>Categoría
+        <select id="prdC_categoria"></select>
+      </label>
+      <label>Proveedor (opcional)
+        <select id="prdC_proveedor"><option value="">— Ninguno —</option></select>
+      </label>
+    </div>
+
+    <div class="modal-actions">
+      <button id="prdC_guardar" class="btn primary">Guardar</button>
+      <button id="prdC_cancel" class="btn">Cancelar</button>
+    </div>
+    <p class="msg" id="prdC_msg"></p>
+  </div>
+</div>
