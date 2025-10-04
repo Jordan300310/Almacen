@@ -1,3 +1,4 @@
+//Cliente central http para la API del backend
 export async function api(path, opts = {}) {
   const res = await fetch(`../backend/api/${path}`, {
     credentials: 'include',

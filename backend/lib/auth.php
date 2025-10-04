@@ -21,17 +21,17 @@ function start_session() {
 
 function require_login() {
   start_session();
-  if (empty($_SESSION['user'])) json_err('No autenticado', 401);
+  if (empty($_SESSION['user'])) json_err('No autenticado', 401); //bloquea endpoint si no hay usuario 
   return $_SESSION['user'];
 }
 
-function has_perm($key) {
-  start_session();
+function has_perm($key) { // maneja permisos
+  start_session(); 
   $perms = $_SESSION['perms'] ?? [];
   return in_array($key, $perms, true);
 }
 
-function require_perm($key) {
+function require_perm($key) { //maneja permisos
   require_login();
   if (!has_perm($key)) {
     http_response_code(403);

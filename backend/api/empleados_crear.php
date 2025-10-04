@@ -46,22 +46,17 @@ try {
     $cargoId = $cargoAdminId; // ignoramos el cargoId que venga del cliente
     $estado  = 1;
   }
-
   // Hash de contraseña (opcionalmente puedes exigir que no sea vacío)
   $hash = $password !== '' ? password_hash($password, PASSWORD_BCRYPT) : null;
-
   // Insert
   $st = $pdo->prepare("
     INSERT INTO dbo.Empleado (Nombre, Username, PasswordHash, CargoId, Estado)
     VALUES (?,?,?,?,?)
   ");
   $st->execute([$nombre, $username, $hash, $cargoId, $estado]);
-
   // Id insertado
   $id = (int)$pdo->query("SELECT SCOPE_IDENTITY() AS Id")->fetch()['Id'];
-
   $pdo->commit();
-
   json_ok(['id'=>$id, 'primerUso'=>$isFirst, 'msg'=>'Empleado creado']);
 } catch (Throwable $e) {
   if ($pdo->inTransaction()) $pdo->rollBack();
