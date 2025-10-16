@@ -1,5 +1,4 @@
 <?php
-// backend/api/empleados_crear.php
 require_once __DIR__ . '/../lib/db.php';
 require_once __DIR__ . '/../lib/json.php';
 require_once __DIR__ . '/../lib/auth.php';

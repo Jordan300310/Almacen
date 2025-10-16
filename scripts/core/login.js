@@ -1,5 +1,6 @@
-
+// modulos/login.js
 const $ = (s) => document.querySelector(s);
+
 const msg = (selector = "#msg", text = "", ok = false) => {
   const el = $(selector);
   if (!el) return;
@@ -8,10 +9,16 @@ const msg = (selector = "#msg", text = "", ok = false) => {
 };
 
 async function apiRaw(url, opts = {}) {
-  const res = await fetch(url, opts);
-  const data = await res.json().catch(() => null);
-  if (!res.ok || !data?.ok) {
-    const det = data?.extra?.detalle || data?.error || `HTTP ${res.status}`;
+  const res = await fetch(url, { credentials: 'include', ...opts });
+  const ct = res.headers.get('content-type') || '';
+  const isJson = ct.includes('application/json');
+  const data = isJson ? await res.json().catch(() => null) : await res.text();
+
+  if (!res.ok || !(isJson && data?.ok === true)) {
+    const det =
+      (isJson && (data?.extra?.detalle || data?.error)) ||
+      (typeof data === 'string' && data.slice(0, 200)) ||
+      `HTTP ${res.status}`;
     throw new Error(det);
   }
   return data.data;
@@ -36,21 +43,27 @@ async function postJSON(path, body) {
 (async () => {
   try {
     const res = await fetch("../backend/api/me.php", { credentials: "include" });
-    if (res.ok) {
+    if (res.status === 401) {
+      // No autenticado: caso esperado en pantalla de login
+    } else if (res.ok) {
       const { data } = await res.json();
       if (data?.user) {
         const next = new URLSearchParams(location.search).get("next") || "./dashboard.html";
         location.replace(next);
         return;
       }
+    } else {
+      console.warn("me.php error:", res.status);
     }
-  } catch {}
+  } catch (e) {
+    console.warn("me.php fetch failed:", e.message);
+  }
 })();
 
 // Primer uso: si no hay empleados, mostrar panel para crear admin
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const info = await apiRaw("../backend/api/primer_uso.php"); // { zero: bool, cargoAdminId?: number }
+    const info = await apiRaw("../backend/api/primer_uso.php"); // { zero, cargoAdminId? }
     if (info?.zero) {
       $("#frmLogin").style.display = "none";
       $("#firstRunPanel").style.display = "block";
@@ -70,7 +83,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           await apiRaw("../backend/api/empleados_crear.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nombre, username, password, cargoId: info.cargoAdminId, estado: 1 }),
+            body: JSON.stringify({
+              nombre, username, password,
+              cargoId: info.cargoAdminId, estado: 1
+            }),
           });
 
           await postJSON("login.php", { username, password });

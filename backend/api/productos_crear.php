@@ -18,13 +18,28 @@ if ($sku==='' || $nombre==='' || $precio<0 || $categoriaId<=0) {
 
 $pdo = pdo();
 $pdo->beginTransaction();
+
 try {
-  $ins = $pdo->prepare("INSERT INTO dbo.Producto (SKU,Nombre,Precio,CategoriaId,ProveedorId) VALUES (?,?,?,?,?)");
-  $ins->execute([$sku,$nombre,$precio,$categoriaId,$proveedorId]);
-  $id = (int)$pdo->query("SELECT SCOPE_IDENTITY() AS Id")->fetch()['Id'];
+  $proveedorId = ($proveedorId === '' || $proveedorId === null) ? null : (int)$proveedorId;
+
+  $sql = "INSERT INTO dbo.Producto
+            (SKU, Nombre, Precio, Estado, CategoriaId, ProveedorId)
+          OUTPUT INSERTED.Id
+          VALUES (?,?,?,?,?,?)";
+  $st = $pdo->prepare($sql);
+  $st->execute([$sku, $nombre, $precio, 1, $categoriaId, $proveedorId]);
+  $id = (int)$st->fetchColumn();
+  if ($id <= 0) throw new Exception('No se obtuvo Id de producto');
+
+  // 2) Crea Inventario para ese producto
+  $st2 = $pdo->prepare(
+    "INSERT INTO dbo.Inventario (ProductoId, Stock, MinStock) VALUES (?,?,?)"
+  );
+  $st2->execute([$id, 0, 0]);
+
   $pdo->commit();
-  json_ok(['id'=>$id, 'msg'=>'Producto creado']);
-} catch(Throwable $e) {
+  json_ok(['id' => $id, 'msg' => 'Producto creado']);
+} catch (Throwable $e) {
   if ($pdo->inTransaction()) $pdo->rollBack();
-  json_err('No se pudo crear', 400, ['detalle'=>$e->getMessage()]);
+  json_err('No se pudo crear', 400, ['detalle' => $e->getMessage()]);
 }

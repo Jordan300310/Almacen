@@ -4,7 +4,7 @@ function pdo(): PDO {
   if ($pdo) return $pdo;
 
   // AJUSTA estos valores a tu entorno:
-  $server   = "JORDAN\\SQLEXPRESS";
+  $server   = "JORDAN\\SQLEXPRESS01";
   $database = "Arq";
   $user     = "sa";
   $password = "12345678";
